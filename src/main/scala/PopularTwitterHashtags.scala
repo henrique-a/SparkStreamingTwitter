@@ -7,11 +7,11 @@ import org.apache.spark.streaming.twitter._
 object PopularTwitterHashtags {
 
   /** Makes sure only ERROR messages get logged to avoid log spam. */
-//  def setupLogging() = {
-//    import org.apache.log4j.{Level, Logger}
-//    val rootLogger = Logger.getRootLogger()
-//    rootLogger.setLevel(Level.ERROR)
-//  }
+  def setupLogging() = {
+    import org.apache.log4j.{Level, Logger}
+    val rootLogger = Logger.getRootLogger()
+    rootLogger.setLevel(Level.ERROR)
+  }
 
   /** Configures Twitter service credentials using twiter.txt in the main workspace directory */
   def setupTwitter() = {
@@ -36,7 +36,7 @@ object PopularTwitterHashtags {
     val ssc = new StreamingContext("local[*]", "PopularHashtags", Seconds(1))
 
     // Get rid of log spam (should be called after the context is set up)
-    //setupLogging()
+    setupLogging()
     val sc = ssc.sparkContext
     sc.setLogLevel("ERROR")
 
